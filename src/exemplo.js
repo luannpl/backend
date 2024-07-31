@@ -16,23 +16,36 @@
 
 // console.log(OutraFunction());
 
-const { QueryTypes } = require('sequelize');
-const connection = require('./database/connection');
+// const { QueryTypes, DataTypes } = require('sequelize');
+// const connection = require('./database/connection');
 
-async function execute(){
-    const resultado = await connection.query("DESCRIBE produtos",{
-        type: QueryTypes.DESCRIBE
-    });
+// async function execute(){
+//     const resultado = await connection.query("DESCRIBE produtos",{
+//         type: QueryTypes.DESCRIBE
+//     });
     
-    const produtos = await connection.query("SELECT * FROM produtos WHERE id = 1",{
-        type: QueryTypes.SELECT
-    });
+//     const produtos = await connection.query("SELECT * FROM produtos WHERE id = 1",{
+//         type: QueryTypes.SELECT
+//     });
 
-    const update = await connection.query("UPDATE produtos SET name = 'Iphone Teste' WHERE id = 1",{
-        type: QueryTypes.UPDATE
-    });
+//     const update = await connection.query("UPDATE produtos SET name = 'Iphone Teste' WHERE id = 1",{
+//         type: QueryTypes.UPDATE
+//     });
 
-    console.log(update);
-}
+//     console.log(update);
+// }
 
-execute();
+
+// // user.sync();
+// // category.sync();
+
+// connection.sync({alter: true}); /*pega todos*/
+
+const User = require('./models/UserModel');
+
+User.create({
+    firstName: "Luan",
+    surName: "Michele",
+    email: "luan@123",
+    password: "123"
+});
