@@ -22,4 +22,5 @@ let UserModel = connection.define("User", {
 
 });
 
+
 module.exports = UserModel;

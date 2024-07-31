@@ -2,12 +2,24 @@ const connection = require('../database/connection')
 const {DataTypes} = require('sequelize');
 
 let ProductModel = connection.define("Product",{
-    name: DataTypes.STRING(255),
+    name: {
+        type: DataTypes.STRING(255),
+        allowNull: false,
+    },
     description: DataTypes.TEXT,
-    price: DataTypes.DECIMAL(5,2),
+    price: {
+        type: DataTypes.DECIMAL(5,2),
+        allowNull: false,
+    },
     price_with_discount: DataTypes.DECIMAL(5,2),
-    enabled: DataTypes.BOOLEAN,
-    stock: DataTypes.INTEGER
+    enabled: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: 0,
+    },
+    stock: {
+        type:  DataTypes.INTEGER,
+        allowNull: false,
+    }
 })
 
 module.exports = ProductModel;

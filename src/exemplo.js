@@ -49,3 +49,9 @@ User.create({
     email: "luan@123",
     password: "123"
 });
+
+User.destroy({
+    where: {
+        id: 3,
+    }
+})
