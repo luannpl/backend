@@ -41,17 +41,17 @@
 
 // connection.sync({alter: true}); /*pega todos*/
 
-const User = require('./models/UserModel');
+// const User = require('./models/UserModel');
 
-User.create({
-    firstName: "Luan",
-    surName: "Michele",
-    email: "luan@123",
-    password: "123"
-});
+// User.create({
+//     firstName: "Luan",
+//     surName: "Michele",
+//     email: "luan@123",
+//     password: "123"
+// });
 
-User.destroy({
-    where: {
-        id: 3,
-    }
-})
+// User.destroy({
+//     where: {
+//         id: 3,
+//     }
+// })

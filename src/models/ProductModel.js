@@ -19,6 +19,11 @@ let ProductModel = connection.define("Product",{
     stock: {
         type:  DataTypes.INTEGER,
         allowNull: false,
+        defaultValue: 0,
+        validate:{
+            isInt: true,
+            min: 0,
+        }
     }
 })
 
