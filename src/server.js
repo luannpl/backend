@@ -36,54 +36,31 @@ app.use(express.json())
 
 
 
-const ProductModel = require('./models/ProductModel')
-const UserModel = require('./models/UserModel')
 
-app.get('/', function(request, response){
-    response.send("Minha primeira rota 1 backend");
-});
+const UserController = require('./controllers/UserController')
+const ProductController = require('./controllers/ProductController')
+// app.get('/', function(request, response){
+//     response.send("Minha primeira rota 1 backend");
+// });
 
-app.get('/produtos', async function(request, response){
-    const products = await ProductModel.findAll();
-    response.json(products);
-});
 
-app.post('/produtos', async function(request, response){
-    ProductModel.create(request.body);
-    return response.json({
-        message: "Produto cadastrado com sucesso"
-    })
-})
+// GET
+app.get('/produtos', ProductController.list);
+app.get('/users', UserController.list)
 
-app.delete('/produtos/:id', async function(request, response){
-    ProductModel.destroy({
-        where:{
-            id: request.params.id
-        }
-    })
+// POST
+app.post('/produtos', ProductController.create)
+app.post('/users/', UserController.create);
 
-    return response.json({
-        message: "Produto deletado com sucesso"
-     })
-  });
 
-app.get('/users', async function(request, response){
-    const users = await UserModel.findAll();
-    response.json(users);
-});
+// PUT
 
-app.post('/users/', async function(request, response){
-    // console.log("Body", request.body);
-    // console.log("Query", request.query);
-    // console.log("Params", request.params);
-    UserModel.create(request.body);
-    return response.json({
-        message: "Usuario criado com sucesso"
-    })
+app.put('/users/:id', UserController.update)
+app.put('/produtos/:id', ProductController.update)
 
-    // UserModel.create()
-});
-
+// DELETE
+app.delete('/users/:id', UserController.delete)
+app.delete('/produtos/:id', ProductController.delete)
 
 
 
