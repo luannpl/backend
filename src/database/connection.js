@@ -1,12 +1,13 @@
 const { Sequelize } = require('sequelize');
 
+
 const connection = new Sequelize({
-    dialect: "mysql",
-    database: "Loja",
-    host: "127.0.0.1",
-    port: 3306,
-    username: "root",
-    password: "luan1010"
+    dialect: process.env.DB_DRIVER,
+    database: process.env.DB_NAME,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    username: process.env.DB_USER,
+    password: process.env.DB_PASSWORD
 })
 
 module.exports = connection;

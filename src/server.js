@@ -1,3 +1,7 @@
+const dotenv = require('dotenv');
+dotenv.config();
+// console.log(process.env)
+
 const express = require('express');
 const app = express();
 
@@ -14,13 +18,18 @@ app.use(express.json())
 const UserController = require('./controllers/UserController')
 const ProductController = require('./controllers/ProductController');
 const UserCreateValidation = require('./middleware/UserCreateValidation');
+const JwtVerifyToken = require('./middleware/JwtVerifyToken')
+
+const PrivateRoutes = express.Router();
+PrivateRoutes.use(JwtVerifyToken);
+// PrivateRoutes.post('products', ProductController.create)
 // app.get('/', function(request, response){
 //     response.send("Minha primeira rota 1 backend");
 // });
 
 // POST
-app.post('/produtos', ProductController.create)
-app.post('/users/',UserCreateValidation, UserController.create);
+PrivateRoutes.post('/produtos', JwtVerifyToken,ProductController.create)
+PrivateRoutes.post('/users/',UserCreateValidation, UserController.create);
 app.post('/login', UserController.login);
 
 // GET
@@ -40,4 +49,5 @@ app.delete('/produtos/:id', ProductController.delete)
 app.delete('/users', UserController.deletarTodos)
 app.delete('/produtos', ProductController.deletarTodos)
 
+app.use(PrivateRoutes);
 app.listen(3000);

@@ -1,5 +1,5 @@
 const ProductModel = require('../models/ProductModel');
-
+const jwt = require('jsonwebtoken')
 
 
 const ProductController = {
@@ -11,9 +11,10 @@ const ProductController = {
         
     },
 
-    async list(request, response){
-        const products = await ProductModel.findAll();
+    async list(request, response){       
+        const products = await ProductModel.findAll()
         response.json(products);
+                
     },
 
     async listarUm(request, response){
